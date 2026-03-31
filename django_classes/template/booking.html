@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title%}
+<title> Booking title</title>
+{% endblock %}
+
+{% block content%}
+<div class="container mt-5">
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-md-8">
+                    <div class="card shadow-lg border-0 rounded-4 p-4">
+
+                        <h2 class="text-center text-primary fw-bold mb-3">
+                            Book an Appointment
+                        </h2>
+
+                        <p class="text-center text-muted mb-4">
+                            Schedule your visit with our expert doctors بسهولة and
+                            conveniently. Fill in your details below, and our team
+                            will confirm your appointment shortly.
+                        </p>
+
+                        <!-- Booking Form -->
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control rounded-3" placeholder="Enter your name"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control rounded-3" placeholder="Enter your phone number"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Select Department</label>
+                                <select class="form-select rounded-3" required>
+                                    <option selected disabled>Choose department</option>
+                                    <option>General Medicine</option>
+                                    <option>Cardiology</option>
+                                    <option>Dermatology</option>
+                                    <option>Pediatrics</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Preferred Date</label>
+                                <input type="date" class="form-control rounded-3" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Message (Optional)</label>
+                                <textarea class="form-control rounded-3" rows="3"
+                                    placeholder="Any specific concern..."></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill shadow">
+                                    Confirm Booking
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

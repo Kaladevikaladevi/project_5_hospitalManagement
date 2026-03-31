@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title%}
+<title> about title</title>
+{% endblock %}
+
+{% block content%}
+<div class="container mt-5">
+    <section class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #e3f2fd);">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Text Content -->
+                <div class="col-md-6">
+                    <h2 class="fw-bold text-primary mb-3">About Us</h2>
+
+                    <p class="text-muted" style="line-height: 1.8;">
+                        At <strong>City Hospital</strong>, we are committed to delivering
+                        exceptional healthcare services with compassion and excellence.
+                        Our mission is to provide patient-centered care using advanced
+                        medical technology and a team of highly experienced professionals.
+                    </p>
+
+                    <p class="text-muted" style="line-height: 1.8;">
+                        We believe that healing goes beyond treatment — it involves trust,
+                        care, and understanding. From routine check-ups to specialized
+                        treatments, we ensure every patient receives personalized attention
+                        in a safe and comfortable environment.
+                    </p>
+
+                    <a href="{% url 'contact' %}" class="btn btn-primary mt-3 px-4 shadow">
+                        Contact Us
+                    </a>
+                </div>
+
+                <!-- Image Section -->
+                <div class="col-md-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3" alt="Hospital"
+                        class="img-fluid rounded-4 shadow-lg" style="max-height: 350px; object-fit: cover;">
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

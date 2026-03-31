@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Home - City Hospital</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4 fw-bold text-primary mb-3">
+                Welcome to City Hospital
+            </h1>
+            <p class="lead text-muted mb-4" style="max-width: 700px; margin: auto;">
+                Your health is our top priority. At City Hospital, we combine advanced
+                medical technology with compassionate care to ensure the best treatment
+                experience for every patient. Our highly skilled doctors and dedicated
+                staff are here to support you at every step of your healthcare journey.
+            </p>
+            <a href="{% url 'booking' %}" class="btn btn-primary btn-lg px-4 shadow">
+                Book an Appointment
+            </a>
+
+            <a href="{% url 'about' %}" class="btn btn-outline-primary btn-lg px-4">
+                Learn More
+            </a>
+
+
+        </div>
+        <div class="col-md-6">
+            <img src="https://t3.ftcdn.net/jpg/15/64/86/30/360_F_1564863008_DqZPBIM7a95kTm8p9iUFmAEOuTBqkiNM.jpg">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,211 @@
+step1-
+first we want to create virtual environment
+-------------------------------------------
+python -m venv djven
+
+
+
+
+
+step2-
+Activate virtual environment
+---------------------------
+djvenv\scripts\activate
+
+
+
+
+
+----open powershell as admin ----SetExecutionPolicy remotesigned--y
+
+
+
+
+
+
+
+step-3
+install django
+--------------
+pip install Django
+
+
+
+
+
+
+
+
+
+
+step-4
+
+start a project in django
+------------------------
+
+django-admin startproject django_tutorial
+
+
+
+
+
+
+
+
+
+step-5
+enter the project folder
+----------------------------
+cd django_tutorial
+
+
+
+
+
+
+
+
+
+
+step-6
+create an app(component) into the project
+------------------------------
+python manage.py startapp home
+
+
+
+step-7
+how to run a backend server
+-------------------
+python manage.py runserver
+
+
+
+
+
+
+
+
+
+step-8
+mounting the home to project
+----------------------------
+select djangoproject
+click settings.py---select installed apps---then type 'home',
+
+step-9
+MVT Design pattern (python followed this pattern )
+model.view.templete
+-------------------------------------------------
+url mapping 
+-----------
+1-- Create a urls.py file in home app
+2-- djangoproject------------url.py--------
+    path(".include"("home.urls")),
+
+//this home page will come first while run 
+
+
+---------------------------------------------------
+App URLS first empty path url define 
+____________________________________
+from django.urls import path.include
+from .import views
+
+urlpatterns = [
+    path(",views.home, name = 'home'),
+
+
+]
+
+
+--------------------------------------------------
+--define first view.in views.py
+-home function
+
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("HOME page is working")
+
+def about(request):
+    return HttpResponse("About page is working") 
+
+
+
+then go to view.py and create functions like index,about,etc..
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')   
+
+
+step-10
+
+django templates  ------which means html file
+--------------------------------------------------
+
+--create a templates folder and
+--- create html file then...
+-- add this into settings.py's in project folder.
+eg:
+TEMPLATES = 
+   
+ -----------  'DIRS': ['templates'],------------------------
+       
+------------------------------------------------------------------------
+--then add this into views.py 
+
+def index(request):
+    return render(request, 'index.html')
+
+-----------------------
+
+
+step-12
+
+Template inheritance
+---------------------
+
+create base.html file(skelton file)
+
+
+blocks : {% block content%} {% endblock %}   ------add this in changes occurring fields.(title,body,..etc) 
+
+Inheritance :{% extends "base.html" %}       ------- using extends every html pages can Inherit base.html file 
+
+
+
+------------------------------------------
+
+
+
+
+step-13
+
+how to activate  navbar in base html
+---------------------
+1-first we have to give the name ='home'  --- in app(home)------urls.py
+
+eg--- path('',views.index,name='home'),
+    path('about',views.about,name='about'),
+    path('booking',views.booking,name='booking'),
+
+
+2-second goto base.html and replace href="#"   to -----  {% url 'home'%}
+-----------------------
+eg-----  <a class="nav-link text-white" href="{% url 'home'%}">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'about'%}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'booking'%}">Booking</a>
+            </li>
+
+-----------------------------------------------------------------------------------------
