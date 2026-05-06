@@ -7,6 +7,16 @@ from home.models import Department, Doctors
 from .forms import BookingForm
 
 
+from django.contrib.auth import authenticate, login
+from .forms import PatientRegisterForm, DoctorRegisterForm
+from .models import Profile
+
+
+from django.contrib.auth.decorators import login_required
+
+from .models import Report
+
+
 # Home page
 def home(request):
     return render(request, 'home.html')
@@ -80,3 +90,105 @@ Time: {booking.appointment_time}
         form = BookingForm()
 
     return render(request, 'booking.html', {'form': form})
+
+
+
+def patient_signup(request):
+    form = PatientRegisterForm()
+
+    if request.method == 'POST':
+        form = PatientRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)   
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+
+            Profile.objects.create(user=user, role='patient')
+
+            messages.success(request, "Patient account created successfully!")
+            return redirect('login')
+
+    return render(request, 'patient_signup.html', {'form': form})
+
+
+def doctor_signup(request):
+    form = DoctorRegisterForm()
+
+    if request.method == 'POST':
+        form = DoctorRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)   # ✅ FIX
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+
+            Profile.objects.create(user=user, role='doctor')
+
+            messages.success(request, "Doctor account created successfully!")
+            return redirect('login')
+
+    return render(request, 'doctor_signup.html', {'form': form})
+
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+
+            # Safe profile access
+            if hasattr(user, 'profile'):
+                if user.profile.role == 'doctor':
+                    return redirect('doctor_dashboard')
+                else:
+                    return redirect('patient_dashboard')
+            else:
+                messages.error(request, "Profile not found!")
+                return redirect('login')
+
+        else:
+            messages.error(request, "Invalid username or password")
+
+    return render(request, 'login.html')
+
+
+
+
+@login_required
+def doctor_dashboard(request):
+    return render(request, 'doctor_dashboard.html')
+
+@login_required
+def patient_dashboard(request):
+    return render(request, 'patient_dashboard.html')
+
+
+
+
+@login_required
+def upload_report(request):
+    if request.method == 'POST':
+        file = request.FILES.get('report')   
+
+        if file:
+            Report.objects.create(
+                patient=request.user,
+                report=file
+            )
+            messages.success(request, "Report uploaded successfully!")
+            return redirect('patient_dashboard')
+        else:
+            messages.error(request, "Please select a file")
+
+    return render(request, 'upload_report.html')
+
+
+
+@login_required
+def view_reports(request):
+    reports = Report.objects.all()
+    return render(request, 'view_reports.html', {'reports': reports})
+
