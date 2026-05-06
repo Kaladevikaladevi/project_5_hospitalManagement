@@ -1,9 +1,12 @@
 {% extends "base.html" %}
-{% block title%}
-<title> Booking title</title>
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+<title>Booking</title>
 {% endblock %}
 
-{% block content%}
+{% block content %}
 <div class="container mt-5">
     <section class="py-5 bg-light">
         <div class="container">
@@ -22,43 +25,22 @@
                             will confirm your appointment shortly.
                         </p>
 
+                        <!-- ✅ Success Message INSIDE card -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success text-center">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
                         <!-- Booking Form -->
-                        <form>
-                            <div class="mb-3">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control rounded-3" placeholder="Enter your name"
-                                    required>
-                            </div>
+                        <form method="POST">
+                            {% csrf_token %}
 
-                            <div class="mb-3">
-                                <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control rounded-3" placeholder="Enter your phone number"
-                                    required>
-                            </div>
+                            {{ form|crispy }}
 
-                            <div class="mb-3">
-                                <label class="form-label">Select Department</label>
-                                <select class="form-select rounded-3" required>
-                                    <option selected disabled>Choose department</option>
-                                    <option>General Medicine</option>
-                                    <option>Cardiology</option>
-                                    <option>Dermatology</option>
-                                    <option>Pediatrics</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Preferred Date</label>
-                                <input type="date" class="form-control rounded-3" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Message (Optional)</label>
-                                <textarea class="form-control rounded-3" rows="3"
-                                    placeholder="Any specific concern..."></textarea>
-                            </div>
-
-                            <div class="text-center">
+                            <div class="text-center mt-3">
                                 <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill shadow">
                                     Confirm Booking
                                 </button>

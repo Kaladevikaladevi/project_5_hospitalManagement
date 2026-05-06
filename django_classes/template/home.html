@@ -4,34 +4,49 @@
 <title>Home - City Hospital</title>
 {% endblock %}
 
-
 {% block content %}
-<div class="container mt-5">
+<div class="container py-5">
 
-    <div class="row">
-        <div class="col-md-6">
-            <h1 class="display-4 fw-bold text-primary mb-3">
+    <div class="row align-items-center g-4">
+
+        <!-- LEFT CONTENT -->
+        <div class="col-12 col-md-6 text-center text-md-start">
+
+            <h1 class="display-5 fw-bold text-primary mb-3">
                 Welcome to City Hospital
             </h1>
-            <p class="lead text-muted mb-4" style="max-width: 700px; margin: auto;">
+
+            <p class="lead text-muted mb-4">
                 Your health is our top priority. At City Hospital, we combine advanced
                 medical technology with compassionate care to ensure the best treatment
                 experience for every patient. Our highly skilled doctors and dedicated
                 staff are here to support you at every step of your healthcare journey.
             </p>
-            <a href="{% url 'booking' %}" class="btn btn-primary btn-lg px-4 shadow">
-                Book an Appointment
-            </a>
 
-            <a href="{% url 'about' %}" class="btn btn-outline-primary btn-lg px-4">
-                Learn More
-            </a>
+            <!-- Buttons -->
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-md-start">
+                <a href="{% url 'booking' %}" class="btn btn-success btn-lg px-4 shadow">
+                    Book Appointment
+                </a>
 
+                <a href="{% url 'about' %}" class="btn btn-outline-success btn-lg px-4">
+                    Learn More
+                </a>
+            </div>
 
         </div>
-        <div class="col-md-6">
-            <img src="https://t3.ftcdn.net/jpg/15/64/86/30/360_F_1564863008_DqZPBIM7a95kTm8p9iUFmAEOuTBqkiNM.jpg">
+
+        <!-- RIGHT IMAGE -->
+        <div class="col-12 col-md-6 text-center">
+            <img 
+                src="https://t3.ftcdn.net/jpg/15/64/86/30/360_F_1564863008_DqZPBIM7a95kTm8p9iUFmAEOuTBqkiNM.jpg"
+                alt="Hospital"
+                class="img-fluid rounded-4 shadow"
+                style="max-height: 400px; object-fit: cover;"
+            >
         </div>
+
     </div>
+
 </div>
 {% endblock %}
