@@ -1,16 +1,44 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<title>Doctor Dashboard</title>
+{% endblock %}
+
 {% block content %}
 
 <div class="container mt-5">
 
-    <h1>Doctor Dashboard</h1>
+    <div class="card shadow p-4">
 
-    <h4>Welcome Doctor {{ request.user.username }}</h4>
+        <h1 class="text-success">
+            Doctor Dashboard
+        </h1>
 
-    <a href="{% url 'logout' %}" class="btn btn-danger">
-        Logout
-    </a>
+        <hr>
+
+        <h4>
+            Welcome Doctor {{ request.user.username }}
+        </h4>
+
+        <div class="mt-4">
+
+            <a href="{% url 'view_reports' %}"
+               class="btn btn-primary">
+
+                View Patient Reports
+
+            </a>
+
+            <a href="{% url 'logout' %}"
+               class="btn btn-danger">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 

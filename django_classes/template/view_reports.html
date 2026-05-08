@@ -20,9 +20,11 @@
             {% for report in reports %}
             <tr>
                 <td>{{ report.patient.username }}</td>
-                <td>
-                    <a href="{{ report.report.url }}" class="btn btn-sm btn-primary">Download</a>
-                </td>
+     <td>
+    <a href="{{ report.report_file.url }}" class="btn btn-sm btn-primary">
+        Download
+    </a>
+</td>
                 <td>{{ report.uploaded_at }}</td>
             </tr>
             {% endfor %}

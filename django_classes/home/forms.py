@@ -1,6 +1,7 @@
 from django import forms
 from .models import Booking
 from django.contrib.auth.models import User
+from .models import MedicalReport
 
 
 # 🔷 Booking Form
@@ -41,3 +42,15 @@ class PatientRegisterForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class MedicalReportForm(forms.ModelForm):
+
+    class Meta:
+
+        model = MedicalReport
+
+        fields = [
+            'report_name',
+            'report_file'
+        ]

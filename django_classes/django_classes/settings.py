@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
     
 ]
 
@@ -127,8 +127,6 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT =BASE_DIR/'uploads'
-MEDIA_URL='/media/'
 
 
 
@@ -155,3 +153,5 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 AUTH_USER_MODEL = 'home.CustomUser'
+
+MEDIA_ROOT = BASE_DIR / 'media'

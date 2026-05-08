@@ -5,8 +5,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from home.models import Department, Doctors, Report
+from home.models import Department, Doctors
 from .forms import BookingForm, PatientRegisterForm, DoctorRegisterForm
+
+from .models import MedicalReport
+from .forms import MedicalReportForm
 
 
 # =========================
@@ -245,34 +248,24 @@ def doctor_dashboard(request):
 @login_required(login_url='login')
 def upload_report(request):
 
-    # Only patients allowed
-    if request.user.role != 'patient':
-        return redirect('doctor_dashboard')
+    if request.method == "POST":
 
-    if request.method == 'POST':
+        uploaded_file = request.FILES.get("report")
 
-        file = request.FILES.get('report')
+        if uploaded_file:
 
-        if file:
-
-            Report.objects.create(
+            MedicalReport.objects.create(
                 patient=request.user,
-                report=file
+                report_name=uploaded_file.name,
+                report_file=uploaded_file
             )
 
-            messages.success(
-                request,
-                "Report uploaded successfully!"
-            )
+            messages.success(request, "Medical report uploaded successfully!")
 
-            return redirect('home')
+            return redirect('upload_report')
 
         else:
-
-            messages.error(
-                request,
-                "Please select a file"
-            )
+            messages.error(request, "Please select a file.")
 
     return render(request, 'upload_report.html')
 
@@ -284,12 +277,26 @@ def upload_report(request):
 @login_required(login_url='login')
 def view_reports(request):
 
-    # Only doctors allowed
+    if request.user.role != 'doctor':
+
+        return redirect('home')
+
+    reports = MedicalReport.objects.all()
+
+    return render(
+        request,
+        'view_reports.html',
+        {'reports': reports}
+    )
+
+
+@login_required(login_url='login')
+def doctor_dashboard(request):
+
     if request.user.role != 'doctor':
         return redirect('home')
 
-    reports = Report.objects.all()
-
-    return render(request, 'view_reports.html', {
-        'reports': reports
-    })
+    return render(
+        request,
+        'doctor_dashboard.html'
+    )
