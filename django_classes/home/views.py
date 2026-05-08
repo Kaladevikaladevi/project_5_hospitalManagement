@@ -39,8 +39,6 @@ def user_login(request):
 
             login(request, user)
 
-            # ROLE BASED REDIRECT
-
             if user.role == 'doctor':
                 return redirect('doctor_dashboard')
 
@@ -54,7 +52,6 @@ def user_login(request):
             })
 
     return render(request, 'login.html')
-
 
 def user_logout(request):
 
@@ -81,15 +78,12 @@ def patient_register(request):
             user.role = 'patient'
             user.save()
 
-            messages.success(request, "Patient account created successfully!")
-
             return redirect('login')
 
         else:
             print(form.errors)
 
     return render(request, 'patient_signup.html', {'form': form})
-
 
 def doctor_register(request):
 
@@ -105,15 +99,12 @@ def doctor_register(request):
             user.role = 'doctor'
             user.save()
 
-            messages.success(request, "Doctor account created successfully!")
-
             return redirect('login')
 
         else:
             print(form.errors)
 
     return render(request, 'doctor_signup.html', {'form': form})
-
 
 # =========================
 # HOSPITAL WEBSITE PAGES

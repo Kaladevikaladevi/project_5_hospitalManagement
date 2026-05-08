@@ -4,11 +4,24 @@
 
 <h2 class="auth-title">Patient Registration</h2>
 
+{% if form.errors %}
+
+<div class="alert alert-danger">
+
+    {% for field in form %}
+        {% for error in field.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
 <form method="POST">
 
     {% csrf_token %}
 
-    <!-- Username -->
     <input 
         type="text"
         name="username"
@@ -17,7 +30,6 @@
         required
     >
 
-    <!-- Email -->
     <input 
         type="email"
         name="email"
@@ -26,7 +38,6 @@
         required
     >
 
-    <!-- Password -->
     <input 
         type="password"
         name="password1"
@@ -35,7 +46,6 @@
         required
     >
 
-    <!-- Confirm Password -->
     <input 
         type="password"
         name="password2"
