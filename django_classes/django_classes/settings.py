@@ -149,3 +149,9 @@ EMAIL_HOST_USER = 'kaladevins9@gmail.com'
 EMAIL_HOST_PASSWORD = 'pexz xcwe slbe ikvb'  # Gmail App Password
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+
+
+AUTH_USER_MODEL = 'home.CustomUser'

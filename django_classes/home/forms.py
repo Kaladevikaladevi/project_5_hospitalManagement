@@ -25,43 +25,19 @@ class BookingForm(forms.ModelForm):
         }
 
 
-# 🔷 Patient Register Form
-class PatientRegisterForm(forms.ModelForm):
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-        help_text=''   # ❌ remove help text
-    )
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+
+
+class DoctorRegisterForm(UserCreationForm):
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
-
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-        }
-
-        help_texts = {
-            'username': '',   # ❌ remove default text
-        }
+        model = CustomUser
+        fields = ['username', 'email', 'password1', 'password2']
 
 
-# 🔷 Doctor Register Form
-class DoctorRegisterForm(forms.ModelForm):
-    password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-        help_text=''   # ❌ remove help text
-    )
+class PatientRegisterForm(UserCreationForm):
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
-
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-        }
-
-        help_texts = {
-            'username': '',   # ❌ remove default text
-        }
+        model = CustomUser
+        fields = ['username', 'email', 'password1', 'password2']

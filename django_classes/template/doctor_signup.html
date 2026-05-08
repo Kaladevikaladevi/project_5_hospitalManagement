@@ -1,17 +1,61 @@
-{% extends "base.html" %}
-
-{% block title %}
-<title>Doctor Signup</title>
-{% endblock %}
+{% extends 'auth_base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center">Doctor Registration</h2>
 
-    <form method="POST" class="w-50 mx-auto">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-success w-100">Register</button>
-    </form>
+<h2 class="auth-title">Doctor Registration</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <!-- Username -->
+    <input 
+        type="text"
+        name="username"
+        placeholder="Enter Username"
+        class="form-control mb-3"
+        required
+    >
+
+    <!-- Email -->
+    <input 
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+        class="form-control mb-3"
+        required
+    >
+
+    <!-- Password -->
+    <input 
+        type="password"
+        name="password1"
+        placeholder="Enter Password"
+        class="form-control mb-3"
+        required
+    >
+
+    <!-- Confirm Password -->
+    <input 
+        type="password"
+        name="password2"
+        placeholder="Confirm Password"
+        class="form-control mb-4"
+        required
+    >
+
+    <button type="submit" class="btn-auth">
+        Register
+    </button>
+
+</form>
+
+<div class="register-links mt-4">
+
+    <a href="{% url 'login' %}">
+        Already have an account? Login
+    </a>
+
 </div>
+
 {% endblock %}

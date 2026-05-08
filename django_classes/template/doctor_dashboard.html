@@ -1,15 +1,17 @@
-{% extends "base.html" %}
-
-{% block title %}
-<title>Doctor Dashboard</title>
-{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2>Doctor Dashboard</h2>
 
-    <div class="mt-4">
-        <a href="{% url 'view_reports' %}" class="btn btn-primary">View Patient Reports</a>
-    </div>
+<div class="container mt-5">
+
+    <h1>Doctor Dashboard</h1>
+
+    <h4>Welcome Doctor {{ request.user.username }}</h4>
+
+    <a href="{% url 'logout' %}" class="btn btn-danger">
+        Logout
+    </a>
+
 </div>
+
 {% endblock %}
