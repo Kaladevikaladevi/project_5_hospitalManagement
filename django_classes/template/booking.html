@@ -1,57 +1,177 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-
 {% block title %}
-<title>Booking</title>
+<title>Booking - City Hospital</title>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
 
-                <div class="col-md-8">
-                    <div class="card shadow-lg border-0 rounded-4 p-4">
+<style>
 
-                        <h2 class="text-center text-primary fw-bold mb-3">
-                            Book an Appointment
-                        </h2>
+/* =========================
+    BOOKING PAGE STYLE
+========================= */
 
-                        <p class="text-center text-muted mb-4">
-                            Schedule your visit with our expert doctors بسهولة and
-                            conveniently. Fill in your details below, and our team
-                            will confirm your appointment shortly.
-                        </p>
+body{
+    background: #f8fafc;
+}
 
-                        <!-- ✅ Success Message INSIDE card -->
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-success text-center">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
+/* SECTION */
+.booking-section{
+    padding: 70px 0;
+}
 
-                        <!-- Booking Form -->
-                        <form method="POST">
-                            {% csrf_token %}
+/* CARD */
+.booking-card{
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+    border: 1px solid rgba(20,184,166,0.1);
+    transition: 0.3s ease;
+}
 
-                            {{ form|crispy }}
+.booking-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+}
 
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary px-5 py-2 rounded-pill shadow">
-                                    Confirm Booking
-                                </button>
+/* TITLE */
+.booking-title{
+    font-size: 34px;
+    font-weight: 800;
+    color: #0f766e;
+    text-align: center;
+}
+
+/* DESCRIPTION */
+.booking-text{
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* FORM INPUTS (CRISPY OVERRIDE) */
+form input,
+form select,
+form textarea{
+    border-radius: 12px !important;
+    padding: 10px !important;
+    border: 1px solid #cbd5e1 !important;
+    transition: 0.3s ease;
+}
+
+/* FOCUS EFFECT */
+form input:focus,
+form select:focus,
+form textarea:focus{
+    border-color: #14b8a6 !important;
+    box-shadow: 0 0 10px rgba(20,184,166,0.25) !important;
+}
+
+/* BUTTON */
+.btn-primary{
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(20,184,166,0.25);
+}
+
+.btn-primary:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(20,184,166,0.35);
+}
+
+/* ALERT */
+.alert{
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .booking-card{
+        padding: 25px;
+    }
+
+    .booking-title{
+        font-size: 26px;
+    }
+
+}
+
+</style>
+
+<!-- =========================
+        BOOKING SECTION
+========================== -->
+
+<section class="booking-section">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="booking-card">
+
+                    <!-- TITLE -->
+                    <h2 class="booking-title mb-3">
+                        Book an Appointment
+                    </h2>
+
+                    <!-- DESCRIPTION -->
+                    <p class="booking-text">
+                        Schedule your visit with our expert doctors easily and conveniently.
+                        Fill in your details below and our team will confirm your appointment
+                        shortly.
+                    </p>
+
+                    <!-- SUCCESS MESSAGE -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success text-center">
+                                {{ message }}
                             </div>
-                        </form>
+                        {% endfor %}
+                    {% endif %}
 
-                    </div>
+                    <!-- FORM -->
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        {{ form|crispy }}
+
+                        <div class="text-center mt-4">
+
+                            <button type="submit"
+                                class="btn btn-primary px-5">
+
+                                Confirm Booking
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
                 </div>
 
             </div>
+
         </div>
-    </section>
-</div>
+
+    </div>
+
+</section>
+
 {% endblock %}

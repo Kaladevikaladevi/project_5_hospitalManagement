@@ -1,41 +1,137 @@
 {% extends "base.html" %}
 
 {% block title %}
-<title>Departments</title>
+<title>Departments - City Hospital</title>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <section class="py-5 bg-light">
-        <div class="container">
 
-            <!-- Heading -->
-            <div class="text-center mb-5">
-                <h2 class="fw-bold text-primary">Our Departments</h2>
-                <p class="text-muted" style="max-width: 700px; margin: auto;">
-                    At <strong>City Hospital</strong>, we offer a wide range of specialized
-                    departments equipped with advanced technology and expert medical
-                    professionals to provide comprehensive healthcare services for every patient.
+<style>
+
+/* =========================
+    DEPARTMENTS PAGE DESIGN
+========================= */
+
+body{
+    background: #f8fafc;
+}
+
+/* SECTION WRAPPER */
+.dept-section{
+    padding: 60px 0;
+}
+
+/* HEADING */
+.dept-heading h2{
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f766e;
+}
+
+.dept-heading p{
+    max-width: 750px;
+    margin: auto;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* CARD */
+.dept-card{
+    background: white;
+    border-radius: 22px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    height: 100%;
+    border: 1px solid rgba(20,184,166,0.15);
+}
+
+/* HOVER EFFECT */
+.dept-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border-color: #14b8a6;
+}
+
+/* TITLE */
+.dept-card h5{
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f766e;
+    margin-bottom: 10px;
+}
+
+/* DESCRIPTION */
+.dept-card p{
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* ICON (optional future use) */
+.dept-card i{
+    font-size: 40px;
+    color: #14b8a6;
+    margin-bottom: 15px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .dept-heading h2{
+        font-size: 30px;
+    }
+
+    .dept-card{
+        padding: 25px 15px;
+    }
+}
+
+</style>
+
+<div class="container dept-section">
+
+    <!-- HEADING -->
+    <div class="text-center dept-heading mb-5">
+
+        <h2>Our Departments</h2>
+
+        <p>
+            At <strong>City Hospital</strong>, we provide advanced medical
+            services across multiple specialized departments with expert doctors
+            and modern healthcare facilities.
+        </p>
+
+    </div>
+
+    <!-- CARDS -->
+    <div class="row g-4">
+
+        {% for d in dept %}
+
+        <div class="col-md-3 col-sm-6">
+
+            <div class="dept-card">
+
+                <!-- Optional icon -->
+                <!-- <i class="fas fa-hospital"></i> -->
+
+                <h5>{{ d.dep_name }}</h5>
+
+                <p>
+                    {{ d.dep_description }}
                 </p>
-            </div>
-
-            <!-- Department Cards -->
-            <div class="row g-4">
-
-                {% for d in dept %}
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
-                        <h5 class="fw-bold text-primary">{{ d.dep_name }}</h5>
-                        <p class="text-muted">
-                            {{ d.dep_description }}
-                        </p>
-                    </div>
-                </div>
-                {% endfor %}
 
             </div>
 
         </div>
-    </section>
+
+        {% endfor %}
+
+    </div>
+
 </div>
+
 {% endblock %}

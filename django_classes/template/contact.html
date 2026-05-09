@@ -1,53 +1,187 @@
 {% extends "base.html" %}
+
 {% block title %}
-<title> Contact </title>
+<title>Contact - City Hospital</title>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <section class="py-5 bg-white">
-        <div class="container">
-            <div class="row align-items-stretch">
 
-                <!-- Contact Info -->
-                <div class="col-lg-5 col-md-12 mb-4">
-                    <h2 class="text-primary fw-bold mb-3">Contact Us</h2>
+<style>
 
-                    <p class="text-muted" style="line-height: 1.8;">
-                        Have questions or need assistance? Our team at <strong>City Hospital</strong>
-                        is here to help you. Reach out to us for appointments, medical inquiries,
-                        or any support you may need. Your health and comfort are our priority.
+/* =========================
+    CONTACT PAGE STYLE
+========================= */
+
+body{
+    background: #f8fafc;
+}
+
+/* SECTION */
+.contact-section{
+    padding: 70px 0;
+}
+
+/* LEFT SIDE */
+.contact-title h2{
+    font-size: 42px;
+    font-weight: 800;
+    color: #0f766e;
+}
+
+.contact-text{
+    color: #64748b;
+    line-height: 1.9;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* INFO BOX */
+.contact-info p{
+    font-size: 15px;
+    color: #475569;
+    margin-bottom: 12px;
+}
+
+.contact-info strong{
+    color: #0f766e;
+}
+
+/* MAP CARD */
+.map-card{
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    border: 1px solid rgba(20,184,166,0.1);
+}
+
+.map-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+/* MAP TITLE */
+.map-card h4{
+    font-weight: 700;
+    color: #0f766e;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* IFRAME STYLE */
+iframe{
+    border-radius: 18px;
+    width: 100%;
+    height: 350px;
+}
+
+/* CONTACT CARD STYLE (LEFT BOX LOOK) */
+.contact-box{
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid rgba(20,184,166,0.1);
+    transition: 0.3s ease;
+}
+
+.contact-box:hover{
+    transform: translateY(-5px);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .contact-title h2{
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .contact-text{
+        text-align: center;
+    }
+
+    .contact-info{
+        text-align: center;
+    }
+
+    .map-card{
+        margin-top: 20px;
+    }
+}
+
+</style>
+
+<!-- =========================
+        CONTACT SECTION
+========================== -->
+
+<section class="contact-section">
+
+    <div class="container">
+
+        <div class="row g-4 align-items-stretch">
+
+            <!-- LEFT SIDE -->
+            <div class="col-lg-5">
+
+                <div class="contact-box h-100">
+
+                    <div class="contact-title mb-3">
+
+                        <h2>Contact Us</h2>
+
+                    </div>
+
+                    <p class="contact-text">
+
+                        Have questions or need assistance? Our team at
+                        <strong>City Hospital</strong> is always ready to help you
+                        with appointments, medical support, and emergency care.
+
                     </p>
 
-                    <div class="mt-4">
-                        <p><strong>📍 Address:</strong> Calicut, Kerala, India</p>
-                        <p><strong>📞 Phone:</strong> +91 111 222 3334</p>
-                        <p><strong>📧 Email:</strong> info@cityhospital.com</p>
-                        <p><strong>🕒 Working Hours:</strong> 24/7 Emergency Services</p>
-                    </div>
-                </div>
+                    <div class="contact-info">
 
-                <!-- Map Section -->
-                <div class="col-lg-7 col-md-12">
-                    <div class="card shadow-lg border-0 rounded-4 p-3">
+                        <p>📍 <strong>Address:</strong> Calicut, Kerala, India</p>
 
-                        <h4 class="fw-bold mb-3 text-center">Find Us on Map</h4>
+                        <p>📞 <strong>Phone:</strong> +91 111 222 3334</p>
 
-                        <!-- Responsive Map -->
-                        <div class="ratio ratio-16x9">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d157748.01618044637!2d75.78464860032689!3d11.287369734580924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65cf1705a3d4d%3A0x61fb0a53ea661e40!2sKaranthur%2C%20Kerala%20673571!5e0!3m2!1sen!2sin!4v1778087422859!5m2!1sen!2sin"
-                                style="border:0;"
-                                allowfullscreen=""
-                                loading="lazy">
-                            </iframe>
-                        </div>
+                        <p>📧 <strong>Email:</strong> info@cityhospital.com</p>
+
+                        <p>🕒 <strong>Hours:</strong> 24/7 Emergency Services</p>
 
                     </div>
+
                 </div>
 
             </div>
+
+            <!-- RIGHT SIDE (MAP) -->
+            <div class="col-lg-7">
+
+                <div class="map-card h-100">
+
+                    <h4>Find Us on Map</h4>
+
+                    <div class="ratio ratio-16x9">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d157748.01618044637!2d75.78464860032689!3d11.287369734580924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65cf1705a3d4d%3A0x61fb0a53ea661e40!2sKaranthur%2C%20Kerala%20673571!5e0!3m2!1sen!2sin!4v1778087422859!5m2!1sen!2sin"
+                            loading="lazy">
+                        </iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </section>
-</div>
+
+    </div>
+
+</section>
+
 {% endblock %}
